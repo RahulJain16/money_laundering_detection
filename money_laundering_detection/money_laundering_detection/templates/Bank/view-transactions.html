@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Suspected List</title>
+  <title>View Transactions</title>
   <style>
     body {
       font-family: Arial, sans-serif;
@@ -13,7 +13,7 @@
     }
     h2 {
       text-align: center;
-      margin-top: 80px; /* space below navbar */
+      margin-top: 80px; /* To push content below navbar */
       color: #333;
     }
     .navbar {
@@ -73,64 +73,97 @@
       background: #007BFF;
       color: white;
     }
-    a.details-link {
-      color: #007BFF;
-      text-decoration: none;
-      font-weight: bold;
-    }
-    a.details-link:hover {
-      text-decoration: underline;
-    }
   </style>
 </head>
 <body>
 
   <!-- Dashboard Navbar -->
-  
   <div class="navbar">
-    
     <a href="bank-dashboard.html">Add Officer</a>
     <a href="manage-customers.html">Manage Customer</a>
     <a href="view-transactions.html">View Transactions</a>
-     <a href="suspected-list.html">Suspected List</a>
+    <a href="suspected-list.html">Suspected List</a>
     <a href="view-feedback.html">View Feedback</a>
     <a href="bank-login.html" style="float:right;">Logout</a>
-
   </div>
 
   <!-- Page Content -->
-  <h2>Suspected List</h2>
+  <h2>Transactions Details</h2>
   <div class="search-container">
-    <select>
-      <option value="customerId">Customer ID</option>
-      <option value="officerId">Officer ID</option>
+    <select id="searchType">
       <option value="date">Date</option>
+      <option value="customerId">Customer ID</option>
+      <option value="name">Customer Name</option>
     </select>
-    <input type="text" placeholder="Search by Customer ID, Officer ID, or Date">
-    <button>Search</button>
+    <input type="text" id="searchInput" placeholder="Search by Customer ID, Name or Date">
+    <button onclick="searchTable()">Search</button>
   </div>
 
-  <table>
+  <table id="transactionTable">
     <thead>
       <tr>
-        <th>Transaction ID</th>
         <th>Customer ID</th>
-        <th>Officer ID</th>
-        <th>Reason</th>
+        <th>Customer Name</th>
+        <th>Customer A/C No.</th>
+        <th>Recipient Name</th>
+        <th>Recipient A/C No.</th>
+        <th>Amount</th>
+        <th>Bank Name</th>
+        <th>Branch</th>
         <th>Date Time</th>
-        <th>Details</th>
       </tr>
     </thead>
     <tbody>
       <tr>
-        <td>1</td>
         <td>1001</td>
-        <td>100</td>
-        <td>Large Amount</td>
-        <td>2022/12/15 12:38:08</td>
-        <td><a href="#" class="details-link">Transaction Details</a></td>
+        <td>Amey</td>
+        <td>12000450000012</td>
+        <td>Spruha</td>
+        <td>1230000450000122</td>
+        <td>3000</td>
+        <td>HDFC Bank</td>
+        <td>Andheri, Mumbai</td>
+        <td>2022/12/13 11:28:14</td>
+      </tr>
+     
+      <tr>
+        <td>1002</td>
+        <td>Nihar</td>
+        <td>12000450000099</td>
+        <td>Alex</td>
+        <td>1230000450000455</td>
+        <td>5000</td>
+        <td>ICICI Bank</td>
+        <td>Bandra, Mumbai</td>
+        <td>2023/01/10 10:15:22</td>
       </tr>
     </tbody>
   </table>
+
+  <script>
+    function searchTable() {
+      let input = document.getElementById("searchInput").value.toLowerCase();
+      let filterType = document.getElementById("searchType").value;
+      let table = document.getElementById("transactionTable");
+      let tr = table.getElementsByTagName("tr");
+
+      let columnIndex = 0;
+      if (filterType === "customerId") columnIndex = 0;
+      else if (filterType === "name") columnIndex = 1;
+      else if (filterType === "date") columnIndex = 8;
+
+      for (let i = 1; i < tr.length; i++) {
+        let td = tr[i].getElementsByTagName("td")[columnIndex];
+        if (td) {
+          let textValue = td.textContent || td.innerText;
+          if (textValue.toLowerCase().indexOf(input) > -1) {
+            tr[i].style.display = "";
+          } else {
+            tr[i].style.display = "none";
+          }
+        }
+      }
+    }
+  </script>
 </body>
 </html>

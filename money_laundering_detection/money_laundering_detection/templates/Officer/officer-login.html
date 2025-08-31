@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Officer Login - Anti Money Laundering System</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f0f2f5;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin: 0;
+      padding: 0;
+    }
+
+     header {
+      background-color: #002b5c;
+      color: white;
+      padding: 15px;
+      font-size: 20px;
+      text-align: left;
+      font-weight: bold;
+    }
+
+    /* Top banner image */
+    .banner {
+      width: 100%;
+      height: 250px;
+      overflow: hidden;
+    }
+    .banner img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    /* Login box */
+    .form-box {
+      background: white;
+      width: 400px;
+      padding: 20px;
+      margin-top: -50px; /* pull form closer to banner */
+      border-radius: 12px;
+      box-shadow: 0px 4px 12px rgba(0,0,0,0.2);
+      text-align: center;
+    }
+
+    .form-box h2 {
+      margin-bottom: 20px;
+      color: #2c3e50;
+    }
+
+    .form-box input {
+      width: 100%;
+      padding: 10px;
+      margin: 10px 0;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      font-size: 14px;
+    }
+
+    .form-box button {
+      width: 100%;
+      padding: 10px;
+      background: #2c3e50;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      font-size: 15px;
+      cursor: pointer;
+      margin-top: 10px;
+    }
+
+    .form-box button:hover {
+      background: #1a242f;
+    }
+  </style>
+</head>
+<body>
+    <header>
+    Anti-Money Laundering System
+  </header>
+  
+  <!-- Banner image outside form -->
+  <div class="banner">
+    <img src="officer-banner.jpg" alt="Officer Banner">
+  </div>
+
+  <!-- Login form box -->
+  <div class="form-box">
+    <h2>Officer Login</h2>
+    <form onsubmit="return loginOfficer(event)">
+      <input type="text" id="username" placeholder="Username" required><br>
+      <input type="password" id="password" placeholder="Password" required><br>
+      <button type="submit">Login</button>
+    </form>
+  </div>
+
+  <script>
+    function loginOfficer(event) {
+      event.preventDefault();
+      let username = document.getElementById('username').value;
+      let password = document.getElementById('password').value;
+
+      if(username === "officer" && password === "12345") {
+        window.location.href = "manage-customers.html";
+      } else {
+        alert("Invalid Officer credentials!");
+      }
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Suspected List</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f8f9fa;
+      margin: 0;
+      padding: 0;
+    }
+    h2 {
+      text-align: center;
+      margin-top: 80px; /* space below navbar */
+      color: #333;
+    }
+    .navbar {
+      background: #2c3e50;
+      overflow: hidden;
+      padding: 10px 0;
+      position: fixed;
+      top: 0;
+      width: 100%;
+      z-index: 1000;
+    }
+    .navbar a {
+      float: left;
+      display: block;
+      color: white;
+      text-align: center;
+      padding: 12px 20px;
+      text-decoration: none;
+    }
+    .navbar a:hover {
+      background: #1abc9c;
+      color: white;
+    }
+    .search-container {
+      text-align: center;
+      margin: 20px 0;
+    }
+    .search-container input, .search-container select, .search-container button {
+      padding: 8px;
+      margin: 5px;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+    }
+    .search-container button {
+      background: #007BFF;
+      color: white;
+      border: none;
+      cursor: pointer;
+    }
+    .search-container button:hover {
+      background: #0056b3;
+    }
+    table {
+      width: 95%;
+      margin: auto;
+      border-collapse: collapse;
+      background: white;
+    }
+    table, th, td {
+      border: 1px solid #ddd;
+    }
+    th, td {
+      padding: 12px;
+      text-align: center;
+    }
+    th {
+      background: #007BFF;
+      color: white;
+    }
+    a.details-link {
+      color: #007BFF;
+      text-decoration: none;
+      font-weight: bold;
+      cursor: pointer;
+    }
+    a.details-link:hover {
+      text-decoration: underline;
+    }
+    /* Modal Styles */
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 2000;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      overflow: auto;
+      background: rgba(0,0,0,0.5);
+    }
+    .modal-content {
+      background: #fff;
+      margin: 10% auto;
+      padding: 20px;
+      border-radius: 8px;
+      width: 50%;
+      box-shadow: 0px 5px 15px rgba(0,0,0,0.3);
+    }
+    .close {
+      float: right;
+      font-size: 20px;
+      font-weight: bold;
+      color: red;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Dashboard Navbar -->
+  <div class="navbar">
+    <a href="bank-dashboard.html">Add Officer</a>
+    <a href="manage-customers.html">Manage Customer</a>
+    <a href="view-transactions.html">View Transactions</a>
+    <a href="suspected-list.html">Suspected List</a>
+    <a href="view-feedback.html">View Feedback</a>
+    <a href="bank-login.html" style="float:right;">Logout</a>
+  </div>
+
+  <!-- Page Content -->
+  <h2>Suspected List</h2>
+  <div class="search-container">
+    <select id="searchType">
+      <option value="1">Customer ID</option>
+      <option value="2">Officer ID</option>
+      <option value="4">Date</option>
+    </select>
+    <input type="text" id="searchInput" placeholder="Search by Customer ID, Officer ID, or Date">
+    <button onclick="searchTable()">Search</button>
+  </div>
+
+  <table id="suspectedTable">
+    <thead>
+      <tr>
+        <th>Transaction ID</th>
+        <th>Customer ID</th>
+        <th>Officer ID</th>
+        <th>Reason</th>
+        <th>Date Time</th>
+        <th>Details</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>1</td>
+        <td>1001</td>
+        <td>100</td>
+        <td>Large Amount</td>
+        <td>2022/12/15 12:38:08</td>
+        <td><a class="details-link" onclick="showDetails('1','1001','100','Large Amount','2022/12/15 12:38:08')">Transaction Details</a></td>
+      </tr>
+      <tr>
+        <td>2</td>
+        <td>1002</td>
+        <td>101</td>
+        <td>Multiple Transfers</td>
+        <td>2022/12/20 10:15:22</td>
+        <td><a class="details-link" onclick="showDetails('2','1002','101','Multiple Transfers','2022/12/20 10:15:22')">Transaction Details</a></td>
+      </tr>
+    </tbody>
+  </table>
+
+  <!-- Modal -->
+  <div id="detailsModal" class="modal">
+    <div class="modal-content">
+      <span class="close" onclick="closeModal()">&times;</span>
+      <h3>Transaction Details</h3>
+      <p id="modalContent"></p>
+    </div>
+  </div>
+
+  <script>
+    // Search Function
+    function searchTable() {
+      let input = document.getElementById("searchInput").value.toLowerCase();
+      let filterType = document.getElementById("searchType").value;
+      let table = document.getElementById("suspectedTable");
+      let tr = table.getElementsByTagName("tr");
+
+      for (let i = 1; i < tr.length; i++) {
+        let td = tr[i].getElementsByTagName("td")[filterType];
+        if (td) {
+          let txtValue = td.textContent || td.innerText;
+          tr[i].style.display = txtValue.toLowerCase().includes(input) ? "" : "none";
+        }
+      }
+    }
+
+    // Modal Functions
+    function showDetails(id, custId, officerId, reason, date) {
+      document.getElementById("modalContent").innerHTML = `
+        <strong>Transaction ID:</strong> ${id} <br>
+        <strong>Customer ID:</strong> ${custId} <br>
+        <strong>Officer ID:</strong> ${officerId} <br>
+        <strong>Reason:</strong> ${reason} <br>
+        <strong>Date Time:</strong> ${date}
+      `;
+      document.getElementById("detailsModal").style.display = "block";
+    }
+    function closeModal() {
+      document.getElementById("detailsModal").style.display = "none";
+    }
+  </script>
+
+</body>
+</html>
