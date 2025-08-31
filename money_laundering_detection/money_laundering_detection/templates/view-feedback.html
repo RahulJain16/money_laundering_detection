@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>View Feedback</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f8f9fa;
+      margin: 0;
+      padding: 0;
+    }
+    h2 {
+      text-align: center;
+      margin-top: 80px; /* space for navbar */
+      color: #333;
+    }
+    .navbar {
+      background: #2c3e50;
+      overflow: hidden;
+      padding: 10px 0;
+      position: fixed;
+      top: 0;
+      width: 100%;
+      z-index: 1000;
+    }
+    .navbar a {
+      float: left;
+      display: block;
+      color: white;
+      text-align: center;
+      padding: 12px 20px;
+      text-decoration: none;
+    }
+    .navbar a:hover {
+      background: #1abc9c;
+      color: white;
+    }
+    .navbar a:last-child {
+      float: right;
+    }
+    table {
+      width: 80%;
+      margin: 30px auto;
+      border-collapse: collapse;
+      background: white;
+      box-shadow: 0px 2px 8px rgba(0,0,0,0.1);
+    }
+    th, td {
+      border: 1px solid #ddd;
+      padding: 12px;
+      text-align: center;
+    }
+    th {
+      background: #007BFF;
+      color: white;
+    }
+    td {
+      color: #333;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navbar -->
+  <div class="navbar">
+   
+    
+    <a href="bank-dashboard.html">Add Officer</a>
+    <a href="manage-customers.html">Manage Customer</a>
+    <a href="view-transactions.html">View Transactions</a>
+     <a href="suspected-list.html">Suspected List</a>
+    <a href="view-feedback.html">View Feedback</a>
+     <a href="bank-login.html" style="float:right;">Logout</a>
+  </div>
+
+  <!-- Page Content -->
+  <h2>Feedback</h2>
+  <table>
+    <thead>
+      <tr>
+        <th>Customer ID</th>
+        <th>Suggestion</th>
+        <th>Feedback</th>
+        <th>Date</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>1001</td>
+        <td>None</td>
+        <td>Good Enough</td>
+        <td>2022/12/14</td>
+      </tr>
+    </tbody>
+  </table>
+
+</body>
+</html>

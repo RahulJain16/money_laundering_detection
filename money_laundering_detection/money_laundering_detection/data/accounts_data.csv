@@ -1,0 +1,6 @@
+account_id,customer_name,account_type,balance,opened_date
+ACC001,Rahul Jain,savings,120000,2020-01-15
+ACC002,Anita Sharma,current,80000,2019-11-22
+ACC003,Sunil Mehta,savings,50000,2021-05-30
+ACC004,Pooja Verma,current,200000,2018-07-19
+ACC005,Amit Singh,savings,95000,2022-03-25

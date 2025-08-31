@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Anti-Money Laundering System</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      text-align: center;
+      background-color: #f9f9f9;
+    }
+
+    header {
+      background-color: #002b5c;
+      color: white;
+      padding: 15px;
+      font-size: 20px;
+      text-align: left;
+      font-weight: bold;
+    }
+
+    .banner {
+      width: 100%;
+      height: 250px;
+      background: url('Screenshot (314).png') no-repeat center center;
+      background-size: cover;
+    }
+
+    .modules {
+      display: flex;
+      justify-content: center;
+      margin: 40px 0;
+      gap: 100px; /* Increased gap for proper spacing */
+    }
+
+    .module {
+      text-align: center;
+    }
+
+    .module img {
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+    }
+
+    .module button {
+      display: block;
+      margin: 10px auto;
+      padding: 10px 25px;
+      border: none;
+      border-radius: 25px;
+      background-color: #007bff;
+      color: white;
+      font-size: 16px;
+      cursor: pointer;
+    }
+
+    .module button:hover {
+      background-color: #0056b3;
+    }
+
+    .module p {
+      margin-top: 5px;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    Anti-Money Laundering System
+  </header>
+
+  <!-- Banner Image -->
+  <div class="banner"></div>
+
+  <!-- Three Modules -->
+  <div class="modules">
+    <div class="module">
+      <img src="https://cdn-icons-png.flaticon.com/512/565/565547.png" alt="Bank Icon">
+        <button onclick="window.location.href='bank-login.html'">LOGIN</button>
+      <p>Bank</p>
+    </div>
+
+    <div class="module">
+      <img src="https://cdn-icons-png.flaticon.com/512/3064/3064197.png" alt="Officer Icon">
+      <button>LOGIN</button>
+      <p>Officer</p>
+    </div>
+
+    <div class="module">
+      <img src="https://cdn-icons-png.flaticon.com/512/747/747376.png" alt="Customer Icon">
+      <button>LOGIN</button>
+      <p>Customer</p>
+    </div>
+  </div>
+
+</body>
+</html>
